@@ -1,0 +1,165 @@
+
+.ct-line.ct-threshold-above, .ct-point.ct-threshold-above, .ct-bar.ct-threshold-above {
+  stroke: #59922b;
+}
+
+.ct-line.ct-threshold-below, .ct-point.ct-threshold-below, .ct-bar.ct-threshold-below {
+  stroke: #f05b4f;
+}
+
+.ct-area.ct-threshold-above {
+  fill: #59922b;
+}
+
+.ct-area.ct-threshold-below {
+  fill: #f05b4f;
+}
+
+.chart-title {
+	margin-left:30px;
+	color:#666;
+}
+
+.ct-series-a .ct-bar.ct-threshold-above {
+  stroke: #f05b4f;
+}
+
+.ct-series-a .ct-bar.ct-threshold-below {
+  stroke: #59922b;
+}
+
+/*
+#chart-main .ct-line {
+    stroke-dasharray: 5px;
+    animation: dashoffset 1s linear infinite
+}
+*/
+.ct-label {
+    color: #000;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+#chart-main .ct-point {
+    animation: bouncing-stroke 1s linear infinite
+}
+
+@-webkit-keyframes dashoffset {
+    0% {
+        stroke-dashoffset: 0
+    }
+    100% {
+        stroke-dashoffset: -20px
+    }
+}
+
+@-moz-keyframes dashoffset {
+    0% {
+        stroke-dashoffset: 0
+    }
+    100% {
+        stroke-dashoffset: -20px
+    }
+}
+
+@-ms-keyframes dashoffset {
+    0% {
+        stroke-dashoffset: 0
+    }
+    100% {
+        stroke-dashoffset: -20px
+    }
+}
+
+@keyframes dashoffset {
+    0% {
+        stroke-dashoffset: 0
+    }
+    100% {
+        stroke-dashoffset: -20px
+    }
+}
+
+@-webkit-keyframes bouncing-stroke {
+    0%,
+    100% {
+        stroke-width: 5px
+    }
+    50% {
+        stroke-width: 10px
+    }
+}
+
+@-moz-keyframes bouncing-stroke {
+    0%,
+    100% {
+        stroke-width: 5px
+    }
+    50% {
+        stroke-width: 10px
+    }
+}
+
+@-ms-keyframes bouncing-stroke {
+    0%,
+    100% {
+        stroke-width: 5px
+    }
+    50% {
+        stroke-width: 10px
+    }
+}
+
+@keyframes bouncing-stroke {
+    0%,
+    100% {
+        stroke-width: 5px
+    }
+    50% {
+        stroke-width: 10px
+    }
+}
+
+@-webkit-keyframes exploding-stroke {
+    0% {
+        stroke-width: 2px;
+        opacity: 1
+    }
+    100% {
+        stroke-width: 20px;
+        opacity: 0
+    }
+}
+
+@-moz-keyframes exploding-stroke {
+    0% {
+        stroke-width: 2px;
+        opacity: 1
+    }
+    100% {
+        stroke-width: 20px;
+        opacity: 0
+    }
+}
+
+@-ms-keyframes exploding-stroke {
+    0% {
+        stroke-width: 2px;
+        opacity: 1
+    }
+    100% {
+        stroke-width: 20px;
+        opacity: 0
+    }
+}
+
+@keyframes exploding-stroke {
+    0% {
+        stroke-width: 2px;
+        opacity: 1
+    }
+    100% {
+        stroke-width: 20px;
+        opacity: 0
+    }
+}
