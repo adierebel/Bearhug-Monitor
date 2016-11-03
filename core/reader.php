@@ -60,11 +60,22 @@ function read_lazada($handle, $store_id) {
 				$check_data_result = $check_data_query->fetch_assoc ();
 				if ($check_data_rows > 0) { // check if order data is exist
 					if ($check_data_result ['status'] != $data [47] || $check_data_result ['store_id'] != $store_id) { // check if order status changed
+						if ($mysqli->real_escape_string ($data[47]) == "pending") {
+							$update_addon = "confirm_tgl = '" . date ( "j" ) . "',
+							confirm_bln = '" . date ( "n" ) . "',
+							confirm_thn = '" . date ( "Y" ) . "',";
+						} 
+						else {
+							$update_addon = "confirm_tgl = '0',
+							confirm_bln = '0',
+							confirm_thn = '0',";
+						}
 						$update_query = "UPDATE order_lazada SET 
 						store_id = '" . $mysqli->real_escape_string ( $store_id ) . "',
 						tgl = '" . $mysqli->real_escape_string ( $tgl ) . "',
 						bln = '" . $mysqli->real_escape_string ( $bln ) . "',
 						thn = '" . $mysqli->real_escape_string ( $thn ) . "',
+						".$update_addon."
 						order_item_id = '" . $mysqli->real_escape_string ( $data [0] ) . "',
 						lazada_id = '" . $mysqli->real_escape_string ( $data [1] ) . "',
 						seller_sku = '" . $mysqli->real_escape_string ( $data [2] ) . "',
@@ -124,12 +135,24 @@ function read_lazada($handle, $store_id) {
 					} else {
 						$update_skip ++;
 					}
-				} else { // if order data not found
+				} 
+				else { // if order data not found
+					if ($mysqli->real_escape_string ($data[47]) == "pending") {
+						$insert_addon = "confirm_tgl = '" . date ( "j" ) . "',
+						confirm_bln = '" . date ( "n" ) . "',
+						confirm_thn = '" . date ( "Y" ) . "',";
+					} 
+					else {
+						$insert_addon = "confirm_tgl = '0',
+						confirm_bln = '0',
+						confirm_thn = '0',";
+					}
 					$insert_query = "INSERT INTO order_lazada SET 
 					store_id = '" . $mysqli->real_escape_string ( $store_id ) . "',
 					tgl = '" . $mysqli->real_escape_string ( $tgl ) . "',
 					bln = '" . $mysqli->real_escape_string ( $bln ) . "',
 					thn = '" . $mysqli->real_escape_string ( $thn ) . "',
+					".$insert_addon."
 					order_item_id = '" . $mysqli->real_escape_string ( $data [0] ) . "',
 					lazada_id = '" . $mysqli->real_escape_string ( $data [1] ) . "',
 					seller_sku = '" . $mysqli->real_escape_string ( $data [2] ) . "',
@@ -562,4 +585,16 @@ function print_debug($string) {
 	fwrite ( $myfile, $string );
 	fclose ( $myfile );
 }
+function expired_date ($timestamp) {
+	$current_time = date("Y-m-d H:i:s");
+	$start_date = date($timestamp);
+	$expires = strtotime('+6 hours', strtotime($timestamp));
+	//$expires = date($expires);
+	$date_diff=($expires-strtotime($current_time)) / 3600;
+	echo "Mulai: ".$timestamp."<br>";
+	echo "Kadaluarsa: ".date('Y-m-d H:i:s', $expires)."<br>";
+	echo "Saat Ini: ".$current_time."<br>";
+	echo round($date_diff, 0)." Jam Tersisa";
+}
+echo expired_date ("2016-11-02 09:40:23");
 ?> 
